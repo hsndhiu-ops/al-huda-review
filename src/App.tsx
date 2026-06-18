@@ -27,10 +27,15 @@ function Router() {
 }
 
 function App() {
+  // Next.js runtime environment ke mutabik base URL setup
+  const baseUrl = (typeof process !== 'undefined' && process.env && process.env.NEXT_PUBLIC_BASE_URL) 
+    ? process.env.NEXT_PUBLIC_BASE_URL.replace(/\/$/, "") 
+    : "";
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+        <WouterRouter base={baseUrl}>
           <Router />
         </WouterRouter>
         <Toaster />
