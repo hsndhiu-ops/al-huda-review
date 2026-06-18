@@ -13,7 +13,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.50.2",
+    "@supabase/supabase-js": "^2.5.0.2",
     "lucide-react": "catalog:",
     "clsx": "catalog:",
     "tailwind-merge": "catalog:",
@@ -25,5 +25,6 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:"
-  }
+  },
+  "packageManager": "pnpm@9.1.0"
 }
