@@ -52,46 +52,53 @@ export default async function AdminArticlesPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
-              {articles.map((article) => (
-                <tr key={article.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900 max-w-xs truncate">
-                    {article.title}
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-500">
-                    {(article.profiles as { username: string } | null)?.username ?? "—"}
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      article.published
-                        ? "bg-green-100 text-green-700"
-                        : "bg-yellow-100 text-yellow-700"
-                    }`}>
-                      {article.published ? "Published" : "Draft"}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 text-sm text-gray-500">{formatDate(article.created_at)}</td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3 justify-end">
-                      {article.published && (
+              {articles.map((article) => {
+                // Supabase join query response handle karne ke liye array/object check
+                const authorName = Array.isArray(article.profiles)
+                  ? article.profiles[0]?.username
+                  : (article.profiles as any)?.username;
+
+                return (
+                  <tr key={article.id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 text-sm font-medium text-gray-900 max-w-xs truncate">
+                      {article.title}
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500">
+                      {authorName ?? "—"}
+                    </td>
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        article.published
+                          ? "bg-green-100 text-green-700"
+                          : "bg-yellow-100 text-yellow-700"
+                      }`}>
+                        {article.published ? "Published" : "Draft"}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-gray-500">{formatDate(article.created_at)}</td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-3 justify-end">
+                        {article.published && (
+                          <Link
+                            href={`/articles/${article.slug}`}
+                            target="_blank"
+                            className="text-sm text-gray-500 hover:text-gray-700"
+                          >
+                            View
+                          </Link>
+                        )}
                         <Link
-                          href={`/articles/${article.slug}`}
-                          target="_blank"
-                          className="text-sm text-gray-500 hover:text-gray-700"
+                          href={`/admin/articles/${article.id}/edit`}
+                          className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
                         >
-                          View
+                          Edit
                         </Link>
-                      )}
-                      <Link
-                        href={`/admin/articles/${article.id}/edit`}
-                        className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
-                      >
-                        Edit
-                      </Link>
-                      <DeleteArticleButton articleId={article.id} />
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                        <DeleteArticleButton articleId={article.id} />
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}
