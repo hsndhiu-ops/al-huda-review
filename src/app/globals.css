@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  background-color: #f9f8f6;
+  color: #111827;
+}
+
+.prose-article {
+  line-height: 1.75;
+  font-size: 1.0625rem;
+  color: #1f2937;
+}
+
+.prose-article h1,
+.prose-article h2,
+.prose-article h3 {
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.75em;
+  margin-bottom: 0.75em;
+  color: #111827;
+}
+
+.prose-article h1 { font-size: 2rem; }
+.prose-article h2 { font-size: 1.5rem; }
+.prose-article h3 { font-size: 1.25rem; }
+
+.prose-article p {
+  margin-bottom: 1.25em;
+}
+
+.prose-article a {
+  color: #4f46e5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-article blockquote {
+  border-left: 3px solid #d1d5db;
+  padding-left: 1rem;
+  color: #6b7280;
+  font-style: italic;
+  margin: 1.5em 0;
+}
+
+.prose-article code {
+  background: #f3f4f6;
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-family: "SF Mono", "Fira Code", monospace;
+}
+
+.prose-article pre {
+  background: #1e293b;
+  color: #e2e8f0;
+  padding: 1.25rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.prose-article pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+.gate-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+}
