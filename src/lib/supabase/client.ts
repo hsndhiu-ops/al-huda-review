@@ -1,7 +1,10 @@
-import { createBrowserClient } from "@supabase/ssr";
-import { getSupabaseCredentials } from "./config";
+import { createBrowserClient } from '@supabase/ssr'
 
-export function createClient() {
-  const { url, anonKey } = getSupabaseCredentials();
-  return createBrowserClient(url, anonKey);
-}
+export const createClient = () =>
+  createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
+
+// Yeh line aapke components ke liye sabse zaruri hai
+export const supabase = createClient()
