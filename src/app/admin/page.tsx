@@ -2,7 +2,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { formatDate } from "@/lib/utils";
 // Path fix: Ek folder peeche ja kar admin folder se import kiya
-import { DeleteArticleButton } from "@/app/admin/DeleteArticleButton";
+import { DeleteArticleButton } from "./DeleteArticleButton";
 export default async function AdminArticlesPage() {
   const supabase = await createClient();
 
